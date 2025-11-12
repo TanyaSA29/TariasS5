@@ -20,6 +20,7 @@ namespace TariasS5
             builder.Services.AddSingleton<PersonRepo>
                 (s=> ActivatorUtilities.CreateInstance<PersonRepo>(s, dbRuta));
 
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

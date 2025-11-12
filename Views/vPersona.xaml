@@ -13,11 +13,15 @@
             HorizontalOptions="Center"
             FontSize="18"
             TextColor="blue"/>
-
+        
         <Entry x:Name="txtNombre" Placeholder="Ingresa el nombre"/>
+              
+            <Label x:Name="lblMensaje"
+                    TextColor="darkred"
+                    Margin="0,0,0,10"/>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition  />
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
@@ -33,22 +37,34 @@
                     Text="Agregar Persona"
                     Clicked="btnAgregar_Clicked"    
                     Grid.Row="0" 
-                    Grid.Column="0"/>
-            
-            <Label x:Name="lblMensaje"
-                     Grid.Row="1"
-                     Grid.Column="0"/>
+                    Grid.Column="0"
+                     Margin="0,0,0,10"/>
+     
             
             <Button x:Name="btnListar"
                    Text="Listar Personas"
                    Clicked="btnListar_Clicked"
                    Grid.Row="2" 
-                   Grid.Column="0"/>
+                   Grid.Column="0"
+                   Margin="0,0,0,10"/>
 
+            <Button x:Name="btnActualizar"
+                    Text="Actualizar Persona"
+                    Clicked="btnActualizar_Clicked"
+                    Grid.Row="3" 
+                    Grid.Column="0"
+                     Margin="0,0,0,10"/>
 
+            <Button x:Name="btnEliminar"
+                    Text="Eliminar Persona"
+                    Clicked="btnEliminar_Clicked"
+                    Grid.Row="4" 
+                    Grid.Column="0"
+                     Margin="0,0,0,10"/>
 
 
             <CollectionView x:Name="ListarPersonas"
+                            BackgroundColor="Aqua"
                             Grid.Row="5"
                             Grid.Column="0">
                 <CollectionView.ItemTemplate>

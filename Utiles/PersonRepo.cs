@@ -67,11 +67,64 @@ namespace TariasS5.Utiles
             }
             return new List<Persona>();
         }
-        // UPDATE
-       
+
+        //UPDATE
+
+        public void UpdatePersonByName(string oldName, string newName)
+        {
+            try
+            {
+                init();
+                if (string.IsNullOrWhiteSpace(oldName) || string.IsNullOrWhiteSpace(newName))
+                {
+                    mensaje = "Nombre viejo y nuevo son requeridos.";
+                    return;
+                }
+
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Nombre == oldName);
+                if (persona == null)
+                {
+                    mensaje = $"No se encontró persona con nombre '{oldName}'.";
+                    return;
+                }
+
+                persona.Nombre = newName.Trim();
+                int result = conn.Update(persona);
+                mensaje = $"Persona actualizada correctamente ({result}) {oldName} = {persona.Nombre}";
+            }
+            catch (Exception ex)
+            {
+                mensaje = $"Error al actualizar: {ex.Message}";
+            }
+        }
 
         // DELETE
-       
+        public void DeletePersonByName(string name)
+        {
+            try
+            {
+                init();
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    mensaje = "El nombre es requerido para eliminar.";
+                    return;
+                }
+
+                var persona = conn.Table<Persona>().FirstOrDefault(p => p.Nombre == name);
+                if (persona == null)
+                {
+                    mensaje = $"No se encontró persona con nombre '{name}'.";
+                    return;
+                }
+
+                int result = conn.Delete(persona);
+                mensaje = $"Persona eliminada correctamente ({result}) Nombre: {name}";
+            }
+            catch (Exception ex)
+            {
+                mensaje = $"Error al eliminar: {ex.Message}";
+            }
+        }
     }
 }
 
